@@ -1,10 +1,3 @@
-"""
-app.py
-Interactive Streamlit dashboard for the Stock Price Predictor.
-
-Run with:
-    streamlit run app.py
-"""
 
 import sys
 import os
