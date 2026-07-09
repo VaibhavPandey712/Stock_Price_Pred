@@ -1,0 +1,30 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyc
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Outputs (generated artifacts - regenerate with train.py)
+outputs/*.pkl
+outputs/*.png
+outputs/*.csv
+!outputs/.gitkeep
+
+# Data
+data/*.csv
+!data/.gitkeep
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/
