@@ -91,9 +91,6 @@ if run:
             delta=f"{last_pred_return * 100:+.2f}%",
         )
 
-    st.caption(
-        "⚠️ This is a technical/educational demo. Stock markets are influenced by "
-        "far more than historical price patterns — do not use this for real trading decisions."
-    )
+    
 else:
     st.info("Set your parameters in the sidebar and click **Train & Predict** to get started.")

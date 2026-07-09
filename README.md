@@ -4,10 +4,7 @@ Predicts short-term stock price movement from historical OHLCV data using
 technical indicators and multiple regression models (Linear Regression,
 Ridge, Random Forest, and SVR), with an interactive Streamlit dashboard.
 
-> ⚠️ **Disclaimer:** This is an educational project. Stock prices are driven
-> by far more than historical patterns (news, earnings, macro events,
-> sentiment). Nothing here is financial advice — do not use it to make real
-> trading decisions.
+
 
 ## Demo
 
