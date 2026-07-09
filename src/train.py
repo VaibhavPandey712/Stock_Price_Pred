@@ -1,19 +1,10 @@
-"""
-train.py
-End-to-end pipeline: load data -> engineer features -> chronological
-train/test split -> train multiple models -> evaluate -> plot -> save
-the best model + scaler to outputs/.
-
-Usage:
-    python src/train.py --ticker AAPL --start 2015-01-01 --horizon 1
-"""
 
 import argparse
 import os
 
 import joblib
 import matplotlib
-matplotlib.use("Agg")  # safe for headless / CI environments
+matplotlib.use("Agg")  
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
@@ -24,7 +15,6 @@ from models import evaluate, get_models
 
 
 def time_series_split(df: pd.DataFrame, test_size: float = 0.2):
-    """Chronological split -- never shuffle time series data."""
     split_idx = int(len(df) * (1 - test_size))
     return df.iloc[:split_idx], df.iloc[split_idx:]
 
@@ -40,10 +30,8 @@ def main(args):
     feature_cols = [c for c in feature_cols if c != "Target"]
 
     train_df, test_df = time_series_split(data, test_size=args.test_size)
-    # Models are trained on returns (stationary target) -- see features.py for why.
     X_train, y_train = train_df[feature_cols], train_df["Target"]
     X_test, y_test = test_df[feature_cols], test_df["Target"]
-    # But we evaluate/report in actual price terms, since that's what's meaningful.
     y_test_price = test_df["Target_Price"]
     test_current_close = test_df["Close"]
 
@@ -58,7 +46,6 @@ def main(args):
     for name, model in models.items():
         model.fit(X_train_scaled, y_train)
         pred_returns = model.predict(X_test_scaled)
-        # Reconstruct price forecast: today's close * (1 + predicted return)
         pred_price = test_current_close.values * (1 + pred_returns)
         metrics = evaluate(y_test_price.values, pred_price)
         results[name] = metrics

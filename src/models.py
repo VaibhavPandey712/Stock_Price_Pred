@@ -1,9 +1,4 @@
-"""
-models.py
-Model registry and evaluation utilities. Linear Regression is included
-as an interpretable baseline; Random Forest and SVR are included as
-stronger, non-linear alternatives.
-"""
+
 
 import numpy as np
 from sklearn.ensemble import RandomForestRegressor

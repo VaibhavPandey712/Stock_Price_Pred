@@ -1,13 +1,4 @@
-"""
-predict.py
-Loads a model trained by train.py and forecasts prices N trading days
-into the future, using an iterative (recursive) forecast: each day's
-predicted price becomes part of the input for forecasting the next day.
 
-Usage:
-    python src/train.py --ticker AAPL           # train + save a model first
-    python src/predict.py --ticker AAPL --days 5
-"""
 
 import argparse
 import os
@@ -42,8 +33,7 @@ def forecast(ticker: str, start: str, days: int, model_dir: str, csv_path: str |
         next_date = last_date + pd.tseries.offsets.BDay(step)
         forecasts.append({"Date": next_date, "Predicted_Close": predicted_price})
 
-        # Append a synthetic row so the next iteration's rolling features
-        # (moving averages, lags, etc.) include this forecasted point.
+      
         new_row = history.iloc[[-1]].copy()
         new_row.index = [next_date]
         new_row["Close"] = predicted_price
